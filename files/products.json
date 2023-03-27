@@ -1,0 +1,174 @@
+[
+  {
+    "id": 1,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 243,
+    "thumbnail": ["imagen prueba"],
+    "code": "cod321s",
+    "stock": 654,
+    "status": true,
+    "category": "cosmetic"
+  },
+  {
+    "id": 2,
+    "title": "Título4",
+    "description": "desc4",
+    "price": 200,
+    "thumbnail": "path imagen4",
+    "code": "Cod4",
+    "stock": 500
+  },
+  {
+    "id": 3,
+    "title": "Título5",
+    "description": "desc5",
+    "price": 250,
+    "thumbnail": "path imagen5",
+    "code": "Cod5",
+    "stock": 500
+  },
+  {
+    "id": 4,
+    "title": "Título6",
+    "description": "desc6",
+    "price": 300,
+    "thumbnail": "path imagen6",
+    "code": "Cod6",
+    "stock": 500
+  },
+  {
+    "id": 5,
+    "title": "Título7",
+    "description": "desc7",
+    "price": 350,
+    "thumbnail": "path imagen7",
+    "code": "Cod7",
+    "stock": 500
+  },
+  {
+    "id": 6,
+    "title": "Título8",
+    "description": "desc8",
+    "price": 400,
+    "thumbnail": "path imagen8",
+    "code": "Cod8",
+    "stock": 500
+  },
+  {
+    "id": 7,
+    "title": "titulo prueba",
+    "description": "descripcion prueba",
+    "price": 350,
+    "thumbnail": "imagen prueba",
+    "code": "cod321",
+    "stock": 654
+  },
+  {
+    "id": 8,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 32,
+    "thumbnail": "imagen prueba",
+    "code": "cod3211",
+    "stock": 654
+  },
+  {
+    "id": 9,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 32,
+    "thumbnail": "imagen prueba",
+    "code": "cod321a",
+    "stock": 654
+  },
+  {
+    "id": 10,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 32,
+    "thumbnail": "imagen prueba",
+    "code": "cod321q",
+    "stock": 654
+  },
+  {
+    "id": 11,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 32,
+    "thumbnail": "imagen prueba",
+    "code": "cod321w",
+    "stock": 654
+  },
+  {
+    "id": 12,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 32,
+    "thumbnail": "imagen prueba",
+    "code": "cod321e",
+    "stock": 654
+  },
+  {
+    "id": 13,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 32,
+    "thumbnail": "imagen prueba",
+    "code": "cod321r",
+    "stock": 654
+  },
+  {
+    "id": 14,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 32,
+    "thumbnail": "imagen prueba",
+    "code": "cod321o",
+    "stock": 654
+  },
+  {
+    "id": 1679399785281,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 243,
+    "thumbnail": ["imagen prueba3", "imagen prueba13", "imagen prueba 23"],
+    "code": "cod321h",
+    "stock": 654,
+    "status": true,
+    "category": "cosmetic"
+  },
+  {
+    "id": 1679399907125,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 243,
+    "thumbnail": ["imagen prueba3", "imagen prueba13", "imagen prueba 23"],
+    "code": "cod321j",
+    "stock": 654,
+    "status": true,
+    "category": "cosmetic"
+  },
+  {
+    "id": 1679399937574,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 243,
+    "thumbnail": ["imagen prueba3", "imagen prueba13", "imagen prueba 23"],
+    "code": "cod321k",
+    "stock": 654,
+    "status": true,
+    "category": "cosmetic"
+  },
+  {
+    "id": 1679399991764,
+    "title": "titulo de prueba",
+    "description": "descripcion prueba",
+    "price": 243,
+    "thumbnail": ["imagen prueba3", "imagen prueba13", "imagen prueba 23"],
+    "code": "cod321l",
+    "stock": 654,
+    "status": true,
+    "category": "cosmetic"
+  }
+]
