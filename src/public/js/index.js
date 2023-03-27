@@ -1,19 +1,40 @@
 // configuracion del socket del lado del cliente
 const socket = io();
-// alert("prueba");
-socket.emit("msg_00", "Hola, me estoy comunicando desde el socket!!!");
 
-socket.on("msg_01", (data) => {
-  console.log(data);
-  // alert(data);
+// Mensaje de inicio cuando se conecta un nuevo cliente
+socket.emit("inicio", "Cliente conectado");
+
+// Elimina un producto por ID
+document.getElementById("btnDelete").addEventListener("click", () => {
+  socket.emit("deleteProduct", document.getElementById("idProd").value);
 });
 
-socket.on("msg_02", (data) => {
-  console.log(data);
-  // alert(data);
+// Agrega Producto
+document.getElementById("btnAdd").addEventListener("click", () => {
+  let obj = {
+    title: document.getElementById("title").value,
+    description: document.getElementById("description").value,
+    price: document.getElementById("price").value,
+    thumbnail: document.getElementById("thumbnail").value,
+    code: document.getElementById("code").value,
+    stock: document.getElementById("stock").value,
+    status: document.getElementById("status").value,
+    category: document.getElementById("category").value,
+  };
+  socket.emit("addProduct", obj);
 });
 
-socket.on("msg_03", (data) => {
-  console.log(data);
-  // alert(data);
+// Lista todos los productos del archivo
+socket.on("productos", (data) => {
+  let logs = "";
+
+  data.products.forEach((log) => {
+    logs += `Id: ${log.id} || Nombre: ${log.title} || descripción: ${log.description} || Precio: ${log.price} || Imágen: ${log.thumbnail} || Código: ${log.code} || Stock: ${log.stock} || Estado: ${log.status} || Categoría: ${log.category}  <br/>`;
+  });
+  document.getElementById("lista-productos").innerHTML = logs;
+});
+
+// En el caso de error de validación en la carga manda mensaje solamente para quien esta cargando
+socket.on("error", (data) => {
+  if (data !== "0") alert(data);
 });

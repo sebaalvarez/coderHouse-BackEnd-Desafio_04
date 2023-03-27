@@ -6,7 +6,7 @@ let products = [];
 const pm = new ProductManager("./files");
 
 /***   Obtiene Todos los productos ***/
-router.get("/", async (req, res) => {
+router.get("/all", async (req, res) => {
   products = await pm.getProducts();
   let limit = req.query.limit;
 
@@ -14,6 +14,18 @@ router.get("/", async (req, res) => {
     status: "Success",
     message: !limit ? products : products.slice(0, limit),
   });
+});
+
+/***  Obtiene Todos los productos y los muestra por navegador  ***/
+router.get("/", async (req, res) => {
+  products = await pm.getProducts();
+
+  res.render("home", { products });
+});
+
+/***  Manejo de WebSockets ***/
+router.get("/realtimeproducts", async (req, res) => {
+  res.render("index", {});
 });
 
 /***   Obtiene producto por ID ***/
@@ -68,6 +80,14 @@ router.delete("/:pid", async (req, res) => {
   res.status(200).send({
     status: "Success",
     message: `Se eliminó el producto ID: ${req.params.pid}`,
+  });
+});
+
+router.delete("/", async (req, res) => {
+  await pm.deleteProductoById(parseInt(req.body.id));
+  res.status(200).send({
+    status: "Success",
+    message: `Se eliminó el producto ID: ${req.body.id}`,
   });
 });
 

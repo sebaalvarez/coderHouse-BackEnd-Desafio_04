@@ -1,4 +1,46 @@
-<div><h1>Holas tarolas</h1></div>
+<div>
+
+  <div>
+    <h2>Agregar Producto</h2>
+
+    <label>Nombre</label>
+    <input id="title" />
+
+    <label>Descripción</label>
+    <input id="description" />
+    <br />
+    <label>Precio</label>
+    <input id="price" />
+
+    <label>Imágen</label>
+    <input id="thumbnail" />
+    <br />
+    <label>Código</label>
+    <input id="code" />
+
+    <label>Stock</label>
+    <input id="stock" />
+    <br />
+    <label>Estado</label>
+    <input id="status" />
+
+    <label>Categoría</label>
+    <input id="category" />
+    <br />
+    <button id="btnAdd"> Agregar</button>
+
+    <p>
+      <h2>Eliminar Producto</h2>
+      <label>ID</label>
+      <input id="idProd" placeholder="ID" type="text" />
+
+      <button id="btnDelete">Eliminar</button>
+    </p>
+
+    <h1> Listado de Productos con Websockets</h1>
+    <p id="lista-productos"></p>
+  </div>
+</div>
 
 <script src="../../socket.io/socket.io.js"></script>
 <script src="../../js/index.js"></script>
