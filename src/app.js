@@ -2,9 +2,9 @@ import express, { urlencoded } from "express";
 import handlebars from "express-handlebars";
 import { Server } from "socket.io";
 import _dirname from "./utils.js";
-// import userRoutes from "./routes/users.routes.js";
+import userRoutes from "./routes/users.routes.js";
 import productRoutes from "./routes/products.routes.js";
-// import cartRoutes from "./routes/carts.routes.js";
+import cartRoutes from "./routes/carts.routes.js";
 import ProductManager from "./controller/productManager.js";
 const app = express();
 const PORT = 8080;
@@ -20,11 +20,9 @@ app.set("views", _dirname + "/views");
 app.set("view engine", "handlebars");
 
 // endpoints
-// app.use("/api/users", userRoutes);
-// app.use("/api/products", productRoutes);
-// app.use("/api/carts", cartRoutes);
-
-app.use("/", productRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/carts", cartRoutes);
 
 const httpServer = app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);

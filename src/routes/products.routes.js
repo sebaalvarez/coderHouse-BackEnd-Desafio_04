@@ -5,16 +5,9 @@ const router = Router();
 let products = [];
 const pm = new ProductManager("./files");
 
-/***   Obtiene Todos los productos ***/
-router.get("/all", async (req, res) => {
-  products = await pm.getProducts();
-  let limit = req.query.limit;
-
-  res.status(200).send({
-    status: "Success",
-    message: !limit ? products : products.slice(0, limit),
-  });
-});
+/****************************/
+/***  Salida por plantillas   **/
+/***************************/
 
 /***  Obtiene Todos los productos y los muestra por navegador  ***/
 router.get("/", async (req, res) => {
@@ -28,11 +21,26 @@ router.get("/realtimeproducts", async (req, res) => {
   res.render("index", {});
 });
 
+/****************************/
+/*****  Salida por url  *******/
+/***************************/
+
+/***   Obtiene Todos los productos ***/
+router.get("/all", async (req, res) => {
+  products = await pm.getProducts();
+  let limit = req.query.limit;
+
+  res.status(200).send({
+    status: "Success",
+    message: !limit ? products : products.slice(0, limit),
+  });
+});
+
 /***   Obtiene producto por ID ***/
 router.get("/:pid", async (req, res) => {
   products = await pm.getProductById(parseInt(req.params.pid));
 
-  if (Object.keys(products).length === 0) {
+  if (!products) {
     res.status(202).send({
       status: "info",
       error: `No se encontró el producto con ID: ${req.params.pid}`,
@@ -58,6 +66,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+/*** Actualiza producto por ID ***/
 router.put("/:pid", async (req, res) => {
   let user = req.body;
   let pid = parseInt(req.params.pid);
@@ -76,19 +85,15 @@ router.put("/:pid", async (req, res) => {
 
 /***   Elimina producto por ID ***/
 router.delete("/:pid", async (req, res) => {
-  await pm.deleteProductoById(parseInt(req.params.pid));
-  res.status(200).send({
-    status: "Success",
-    message: `Se eliminó el producto ID: ${req.params.pid}`,
-  });
-});
-
-router.delete("/", async (req, res) => {
-  await pm.deleteProductoById(parseInt(req.body.id));
-  res.status(200).send({
-    status: "Success",
-    message: `Se eliminó el producto ID: ${req.body.id}`,
-  });
+  let arrVali = await pm.deleteProductoById(parseInt(req.params.pid));
+  if (arrVali[0] === 1) {
+    res.status(400).send({ status: "Error", message: arrVali[1] });
+  } else {
+    res.status(200).send({
+      status: "Success",
+      message: `Se eliminó el producto ID: ${req.params.pid}`,
+    });
+  }
 });
 
 export default router;

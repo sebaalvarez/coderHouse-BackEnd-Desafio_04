@@ -65,12 +65,10 @@ class ProductManager {
 
   getProductById = async (id) => {
     try {
-      let prod = {};
       this.validarExistenciaArchivo(this.ruta);
       let arrayP = JSON.parse(await fs.promises.readFile(this.ruta, "utf-8"));
-      for (const obj of arrayP) if (obj.id === id) prod = { ...obj };
 
-      return prod;
+      return arrayP.find((el) => el.id === id);
     } catch (err) {
       console.error(`ERROR obteniendo Producto por ID: ${err}`);
     }
@@ -102,17 +100,25 @@ class ProductManager {
   };
 
   deleteProductoById = async (id) => {
+    let msg = "";
     try {
       this.validarExistenciaArchivo(this.ruta);
       let arryP = JSON.parse(await fs.promises.readFile(this.ruta, "utf-8"));
-      let arryNew = new Array();
-
-      for (const obj of arryP) if (obj.id !== id) arryNew.push({ ...obj });
-
-      await fs.promises.writeFile(this.ruta, JSON.stringify(arryNew));
-      console.log(`El producto id: ${id} fue eliminado correctamente`);
+      let ind = arryP.findIndex((el) => el.id === id);
+      if (ind === -1) {
+        msg = `No se encontró el producto id: ${id} `;
+        return [1, msg];
+      } else {
+        arryP.splice(ind, 1);
+        await fs.promises.writeFile(this.ruta, JSON.stringify(arryP));
+        msg = `El producto id: ${id} fue eliminado correctamente`;
+        return [0, msg];
+      }
     } catch (err) {
-      console.log(`ERROR borrando Producto por ID: ${err}`);
+      msg = `ERROR borrando Producto por ID: ${err}`;
+      return [1, msg];
+    } finally {
+      console.log(msg);
     }
   };
 
