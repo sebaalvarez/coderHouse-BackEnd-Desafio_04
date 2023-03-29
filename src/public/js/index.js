@@ -26,15 +26,20 @@ document.getElementById("btnAdd").addEventListener("click", () => {
 
 // Lista todos los productos del archivo
 socket.on("productos", (data) => {
-  let logs = "";
-
-  data.products.forEach((log) => {
-    logs += `Id: ${log.id} || Nombre: ${log.title} || descripción: ${log.description} || Precio: ${log.price} || Imágen: ${log.thumbnail} || Código: ${log.code} || Stock: ${log.stock} || Estado: ${log.status} || Categoría: ${log.category}  <br/>`;
-  });
-  document.getElementById("lista-productos").innerHTML = logs;
+  document.getElementById("tblDatos").innerHTML = creaTabla(data);
 });
 
 // En el caso de error de validación en la carga manda mensaje solamente para quien esta cargando
 socket.on("error", (data) => {
   if (data !== "0") alert(data);
 });
+
+function creaTabla(data) {
+  let stringTabla = `<tr> <th> Id</th><th> Nombre </th><th> Descripción </th><th> Precio </th><th> Imágen </th><th> Código </th><th> Stock </th><th> Estado </th><th> Categoría </th> </tr>`;
+
+  data.products.forEach((log) => {
+    stringTabla += `<tr> <td> ${log.id} </td><td> ${log.title} </td><td> ${log.description}  </td><td> ${log.price} </td><td> ${log.thumbnail}  </td><td> ${log.code}  </td><td> ${log.stock} </td><td> ${log.status}  </td><td> ${log.category} </td> </tr>`;
+  });
+
+  return stringTabla;
+}
