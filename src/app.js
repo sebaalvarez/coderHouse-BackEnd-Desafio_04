@@ -1,23 +1,35 @@
 import express, { urlencoded } from "express";
-import handlebars from "express-handlebars";
+import exphbs from "express-handlebars";
 import { Server } from "socket.io";
 import _dirname from "./utils.js";
 import userRoutes from "./routes/users.routes.js";
 import productRoutes from "./routes/products.routes.js";
 import cartRoutes from "./routes/carts.routes.js";
 import ProductManager from "./controller/productManager.js";
+import path from "path";
+
 const app = express();
 const PORT = 8080;
 
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(_dirname + "/public"));
+app.use(express.static(path.join(_dirname, "public")));
 
 // motor de plantillas
-app.engine("handlebars", handlebars.engine());
-app.set("views", _dirname + "/views");
-app.set("view engine", "handlebars");
+app.set("views", path.join(_dirname, "views"));
+
+app.engine(
+  ".hbs",
+  exphbs.engine({
+    layoutsDir: path.join(app.get("views"), "layouts"),
+    partialsDir: path.join(app.get("views"), "partials"),
+    defaultLayout: "main",
+    extname: ".hbs",
+  })
+);
+
+app.set("view engine", ".hbs");
 
 // endpoints
 app.use("/api/users", userRoutes);
@@ -29,7 +41,7 @@ const httpServer = app.listen(PORT, () => {
 });
 
 let products = [];
-const pm = new ProductManager("./files");
+const pm = new ProductManager(path.join(".", "files"));
 
 // web socket
 const socketServer = new Server(httpServer);

@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import Product from "../model/product.js";
 
 class ProductManager {
@@ -8,7 +9,7 @@ class ProductManager {
 
   constructor(dirName) {
     this.dirName = dirName;
-    this.ruta = this.dirName + "/" + this.fileName;
+    this.ruta = path.join(this.dirName, this.fileName);
     this.crearDirectorio(this.dirName);
     this.validarExistenciaArchivo(this.ruta);
     this.arrayP = JSON.parse(fs.readFileSync(this.ruta, "utf-8"));

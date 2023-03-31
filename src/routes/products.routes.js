@@ -1,9 +1,10 @@
 import { Router } from "express";
+import path from "path";
 import ProductManager from "../controller/productManager.js";
 
 const router = Router();
 let products = [];
-const pm = new ProductManager("./files");
+const pm = new ProductManager(path.join(".", "files"));
 
 /****************************/
 /***  Salida por plantillas   **/
